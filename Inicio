@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lmantrix On Top</title>
+<style>
+  body { font-family: Arial, sans-serif; margin: 20px; background: rgb(240,240,240); color: rgb(34,34,34); }
+  header { text-align: center; }
+  h1 { color: rgb(27, 77, 142); }
+  select, button, input[type=number] { padding: 8px; margin: 5px 0; font-size: 1rem; width: 100%; box-sizing: border-box; }
+  .container { max-width: 600px; margin: auto; background: white; padding: 20px; border-radius: 8px; }
+  .section { margin-top: 20px; }
+  label { font-weight: bold; display: block; margin-top: 15px; }
+  button { background: rgb(27, 77, 142); color: white; border: none; border-radius: 4px; cursor: pointer; }
+  button:hover { background: rgb(20, 64, 107); }
+  .result { margin-top: 15px; white-space: pre-wrap; background: rgb(238, 242, 247); padding: 15px; border-radius: 6px; min-height: 80px; }
+</style>
+</head>
+<body>
+<header><h1>Lmantrix On Top</h1></header>
+<div class="container">
+  <div class="section">
+    <label for="mode">Select section:</label>
+    <select id="mode">
+      <option value="craft">Crafting</option>
+      <option value="tame">Taming</option>
+      <option value="demolish">Demolition</option>
+    </select>
+  </div>
