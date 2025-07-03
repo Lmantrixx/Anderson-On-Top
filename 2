@@ -1,0 +1,17 @@
+  <div class="section" id="section-craft">
+    <label for="craft-item">Select structure/item:</label>
+    <select id="craft-item">
+      <optgroup label="Smithy">
+        <option value="metal_sword">Metal Sword</option>
+        <option value="fabricated_pistol">Fabricated Pistol</option>
+      </optgroup>
+      <optgroup label="Fabricator">
+        <option value="tek_rifle">Tek Rifle</option>
+        <option value="tek_shield">Tek Shield</option>
+      </optgroup>
+    </select>
+    <label for="craft-quantity">Quantity:</label>
+    <input type="number" id="craft-quantity" min="1" value="1">
+    <button id="craft-calc-btn">Calculate materials</button>
+    <div class="result" id="craft-result"></div>
+  </div>
