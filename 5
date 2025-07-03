@@ -1,0 +1,57 @@
+<script>
+const crafts = {
+  metal_sword: { metal:50, wood:20, hide:10 },
+  fabricated_pistol: { metal:70, crystal:15, polymer:10 },
+  tek_rifle: { element:80, metal:100, crystal:50 },
+  tek_shield: { element:40, metal:60, crystal:30 }
+};
+const tames = {
+  rex: { food:{ prime_meat:30, narcotics:15 }, base_time:45 },
+  tuso: { food:{ meat:40, narcotics:20 }, base_time:30 },
+  achatina: { food:{ berries:80, narcotics:0 }, base_time:10 }
+};
+const structures = {
+  tek_door: { metal:240, polymer:40 },
+  tek_replicator: { metal:5000, polymer:600, crystal:800, black_pearl:100 },
+  tek_generator: { metal:240, polymer:120, crystal:80, electronics:60 },
+  tek_shield: { metal:600, polymer:100, crystal:80 },
+  tek_transmitter: { metal:2500, polymer:400, crystal:400, black_pearl:40, electronics:250 },
+  tek_gate: { metal:2000, polymer:280 }
+};
+const stack_sizes = { metal:300, polymer:100, crystal:100, black_pearl:100, electronics:100 };
+document.getElementById('mode').addEventListener('change',e=>{
+ const m=e.target.value;
+ document.getElementById('section-craft').style.display=(m==='craft')?'block':'none';
+ document.getElementById('section-tame').style.display=(m==='tame')?'block':'none';
+ document.getElementById('section-demolish').style.display=(m==='demolish')?'block':'none';
+});
+document.getElementById('craft-calc-btn').addEventListener('click',()=>{
+ const it=document.getElementById('craft-item').value, q=parseInt(document.getElementById('craft-quantity').value)||1, mats=crafts[it];
+ if(!mats){ document.getElementById('craft-result').textContent='Item not found.'; return; }
+ let res=`Materials to craft ${q} ${it.replace('_',' ')}:\n\n`;
+ for(const [mat,val] of Object.entries(mats)) res+=`- ${mat}: ${val*q}\n`;
+ document.getElementById('craft-result').textContent=res;
+});
+document.getElementById('tame-calc-btn').addEventListener('click',()=>{
+ const cr=document.getElementById('tame-creature').value, lvl=parseInt(document.getElementById('tame-level').value)||1, tm=tames[cr];
+ if(!tm){ document.getElementById('tame-result').textContent='Creature not found.'; return; }
+ let res=`Tame ${cr} level ${lvl}:\n\n`;
+ for(const [food,amt] of Object.entries(tm.food)) res+=`- ${food}: ${amt*lvl}\n`;
+ res+=`- Base time: ${tm.base_time} min`;
+ document.getElementById('tame-result').textContent=res;
+});
+document.getElementById('demolish-calc-btn').addEventListener('click',()=>{
+ const st=document.getElementById('demolish-structure').value, qty=parseInt(document.getElementById('demolish-qty').value)||1, it=structures[st];
+ if(!it) return;
+ let res=`Return from demolishing ${qty} ${st.replace('_',' ')}:\n\n`;
+ for(const [mat,val] of Object.entries(it)){
+   const tot=Math.floor(val*qty*0.5);
+   const stacks=Math.ceil(tot/stack_sizes[mat]);
+   const ded=Math.ceil(stacks/180);
+   res+=`- ${mat}: ${tot} (~ ${ded} box${ded>1?'es':''})\n`;
+ }
+ document.getElementById('demolish-result').textContent=res;
+});
+</script>
+</body>
+</html>
